@@ -84,4 +84,20 @@ describe("Timer component renders", () => {
   it("should render start button", () => {
     expect(container.find("#startBtn").text()).toEqual("Start");
   });
+
+  it("should render stop button", () => {
+    expect(container.find("#stopBtn").text()).toEqual("Stop");
+  });
+
+  it("should render reset button", () => {
+    expect(container.find("#resetBtn").text()).toEqual("Reset");
+  });
+
+  it("checking reset button", () => {
+    let container2 = mount(<TimerBody />);
+    container2.find("#plusMinutes").at(1).simulate("click");
+    container2.find("#plusMinutes").at(1).simulate("click");
+    container2.find("#resetBtn").at(1).simulate("click");
+    expect(container2.find("#minutes").at(1).text()).toMatch("00");
+  });
 });

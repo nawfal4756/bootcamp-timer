@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "./TimerBody.styles";
 import {
   Grid,
@@ -13,19 +13,12 @@ import {
 export default function TimerBody() {
   const classes = useStyles();
 
-  let h = 0;
-  let m = 0;
-  let s = 0;
-
   const [timerOn, setTimerOn] = useState(false);
   const [hours, setHours] = useState(0);
   const [min, setMin] = useState(0);
   const [sec, setSec] = useState(0);
 
   const startTimer = () => {
-    h = hours;
-    m = min;
-    s = sec;
     setTimerOn(true);
   };
 
@@ -33,13 +26,36 @@ export default function TimerBody() {
     setTimerOn(false);
   };
 
-  const resetTimer = () => {};
-
-  const restartTimer = () => {};
+  const resetTimer = () => {
+    setTimerOn(false);
+    setHours(0);
+    setMin(0);
+    setSec(0);
+  };
 
   useEffect(() => {
     if (timerOn) {
-      
+      var timerInterval = setInterval(() => {
+        setSec(sec - 1);
+
+        if (sec === 0 && min > 0) {
+          setMin(min - 1);
+          setSec(59);
+        }
+
+        if (min === 0 && sec === 0 && hours >= 0) {
+          setHours(hours - 1);
+          setMin(59);
+          setSec(59);
+        }
+
+        if (hours === 0 && min === 0 && sec === 0) {
+          setTimerOn(false);
+        }
+      }, 1000);
+      return function cleanup() {
+        clearInterval(timerInterval);
+      };
     }
   });
 
@@ -71,6 +87,7 @@ export default function TimerBody() {
                       onClick={() => {
                         setHours(hours + 1);
                       }}
+                      disabled={timerOn}
                     >
                       +
                     </Button>
@@ -79,7 +96,7 @@ export default function TimerBody() {
                       onClick={() => {
                         setHours(hours - 1);
                       }}
-                      disabled={hours === 0}
+                      disabled={hours === 0 || timerOn}
                     >
                       -
                     </Button>
@@ -119,7 +136,7 @@ export default function TimerBody() {
                       onClick={() => {
                         setMin(min + 1);
                       }}
-                      disabled={min === 59}
+                      disabled={min === 59 || timerOn}
                     >
                       +
                     </Button>
@@ -128,7 +145,7 @@ export default function TimerBody() {
                       onClick={() => {
                         setMin(min - 1);
                       }}
-                      disabled={min === 0}
+                      disabled={min === 0 || timerOn}
                     >
                       -
                     </Button>
@@ -168,7 +185,7 @@ export default function TimerBody() {
                       onClick={() => {
                         setSec(sec + 1);
                       }}
-                      disabled={sec === 59}
+                      disabled={sec === 59 || timerOn}
                     >
                       +
                     </Button>
@@ -177,7 +194,7 @@ export default function TimerBody() {
                       onClick={() => {
                         setSec(sec - 1);
                       }}
-                      disabled={sec === 0}
+                      disabled={sec === 0 || timerOn}
                     >
                       -
                     </Button>
@@ -202,20 +219,24 @@ export default function TimerBody() {
             </Grid>
 
             <Grid item xs={2} className={classes.btncontrol}>
-              <Button fullWidth className={classes.btn} onClick={stopTimer}>
+              <Button
+                fullWidth
+                className={classes.btn}
+                onClick={stopTimer}
+                id="stopBtn"
+              >
                 Stop
               </Button>
             </Grid>
 
             <Grid item xs={2} className={classes.btncontrol}>
-              <Button fullWidth className={classes.btn} onClick={resetTimer}>
+              <Button
+                fullWidth
+                className={classes.btn}
+                onClick={resetTimer}
+                id="resetBtn"
+              >
                 Reset
-              </Button>
-            </Grid>
-
-            <Grid item xs={2} className={classes.btncontrol}>
-              <Button fullWidth className={classes.btn} onClick={restartTimer}>
-                Restart
               </Button>
             </Grid>
           </Grid>
