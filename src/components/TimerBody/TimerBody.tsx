@@ -59,6 +59,10 @@ export default function TimerBody() {
     }
   });
 
+  if (hours === -1 && min === 59 && sec === 59 && !timerOn) {
+    resetTimer();
+  }
+
   return (
     <div className={classes.root}>
       <Grid container spacing={2} justify="center" alignContent="center">
