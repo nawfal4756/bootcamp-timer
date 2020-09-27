@@ -1,21 +1,48 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Timer App",
+  "name": "Timer App by M. Nawfal Mehboob",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/icon/none.png",
+      "type": "image/png",
+      "sizes": "600x600",
+      "purpose": "maskable"
     },
     {
-      "src": "logo192.png",
+      "src": "/icon/minimum.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "600x600",
+      "purpose": "maskable"
     },
     {
-      "src": "logo512.png",
+      "src": "/icon/circle.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "600x600",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon/rounded.png",
+      "type": "image/png",
+      "sizes": "600x600",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon/square.png",
+      "type": "image/png",
+      "sizes": "600x600",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon/drop.png",
+      "type": "image/png",
+      "sizes": "600x600",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon/cylinder.png",
+      "type": "image/png",
+      "sizes": "600x600",
+      "purpose": "maskable"
     }
   ],
   "start_url": ".",

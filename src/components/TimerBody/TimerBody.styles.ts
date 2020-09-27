@@ -12,5 +12,6 @@ export const useStyles = makeStyles({
   },
   btn: {
     border: "2px solid grey",
+    backgroundColor: "white",
   },
 });
